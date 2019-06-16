@@ -12,7 +12,7 @@
     <div class = "alert alert-success fade show" th:if = "${message}">
         <p th:if = "${message}" th:text = "${message}"></p>
     </div>
-    <h1>Post id:</h1>
+    <h1>Post id: ${post.id}</h1>
     <h3 th:text="${post.id}"></h3>
     <p th:text="${post.content}"></p>
 
