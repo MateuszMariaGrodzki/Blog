@@ -5,9 +5,7 @@ import com.example.demo.Repository.PostRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/posts")
@@ -29,6 +27,12 @@ public class PostController {
     public String createPost(@ModelAttribute Post post , ModelMap modelMap){
         postRepository.save(post);
         modelMap.put("post" , post);
+        return "redirect:/posts/"+post.getId();
+    }
+
+    @GetMapping("/{id}")
+    public String showPost(@PathVariable Integer id, ModelMap modelMap){
+        modelMap.put("post", postRepository.findById(id).get());
         return "posts/show";
     }
 
