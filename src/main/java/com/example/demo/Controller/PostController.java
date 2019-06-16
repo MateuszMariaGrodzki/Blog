@@ -1,5 +1,6 @@
 package com.example.demo.Controller;
 
+import com.example.demo.Model.Comment;
 import com.example.demo.Model.Post;
 import com.example.demo.Repository.PostRepository;
 import org.springframework.stereotype.Controller;
@@ -31,7 +32,11 @@ public class PostController {
 
     @GetMapping("/{id}")
     public String showPost(@PathVariable Integer id, ModelMap modelMap){
-        modelMap.put("post", postRepository.findById(id).get());
+        Post post = postRepository.findById(id).get();
+        modelMap.put("post", post);
+        Comment comment = new Comment();
+        comment.setPost(post);
+        modelMap.put("comment", comment);
         return "posts/show";
     }
 

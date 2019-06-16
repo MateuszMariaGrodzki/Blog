@@ -12,9 +12,9 @@ public class Comment {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private Integer id;
 
-    private String descriptiion;
+    private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Post post;
 
 
