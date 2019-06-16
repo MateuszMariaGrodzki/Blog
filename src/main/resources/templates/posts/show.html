@@ -9,12 +9,19 @@
 <body>
 
 <div class="container">
+    <div class = "alert alert-success fade show" th:if = "${message}">
+        <p th:if = "${message}" th:text = "${message}"></p>
+    </div>
     <h1>Post id:</h1>
     <h3 th:text="${post.id}"></h3>
     <p th:text="${post.content}"></p>
-    <h3>Dodaj komentarz</h3>
+
     <form th:object="${comment}" th:action="@{/comments}" th:method="post">
         <div class="form-group">
+            <ul>Comments:
+                <li th:each ="comment: ${comments}" th:text = "${comment}"></li>
+            </ul>
+            <h3>Dodaj komentarz</h3>
             <label>Content</label>
             <input th:field="*{description}" type="text"
                    class="form-control input-small"
@@ -25,6 +32,7 @@
         </div>
         <button type="submit" class="btn btn-primary btn-lg ">Dodaj</button>
     </form>
+
 </div>
 
 

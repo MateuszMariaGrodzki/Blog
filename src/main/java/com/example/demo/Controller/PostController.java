@@ -37,6 +37,7 @@ public class PostController {
         Comment comment = new Comment();
         comment.setPost(post);
         modelMap.put("comment", comment);
+        modelMap.put("comments" , post.getComments());
         return "posts/show";
     }
 
